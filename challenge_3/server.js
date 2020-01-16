@@ -9,4 +9,9 @@ app.get('/',
     res.sendfile(path.join(__dirname + '/public/index.html'));
 });
 
+app.post('/account',
+(req, res) => {
+    res.
+});
+
 module.exports = app;

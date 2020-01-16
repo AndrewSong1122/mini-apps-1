@@ -1,0 +1,22 @@
+{
+  "name": "checkout",
+  "version": "1.0.0",
+  "description": "",
+  "main": "public/app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node public/app.js",
+    "build": "babel client --out-dir public --presets=@babel/react --source-maps inline"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.17.1"
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.8.3",
+    "@babel/core": "^7.8.3",
+    "@babel/preset-react": "^7.8.3",
+    "nodemon": "^2.0.2"
+  }
+}
