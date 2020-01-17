@@ -8,12 +8,12 @@ class ConnectFour extends React.Component {
     this.state = {
       currentPlayer: 1, // 0 = unoccupied space; 1 = yellow; 2 = red
       occupiedSpaces: 0,
-      grid: [[0, 0, 0, 0, 0, 1], // start at grid[0][col.length-1] (each row in matrix is column of game grid)
-             [0, 0, 0, 0, 2, 0], //          grid[1][col.length-1] ... until grid[6][col.length-1]
-             [0, 0, 0, 1, 0, 0], //  then go grid[0][col.length-2] ... grid[6][col.length-2]
-             [0, 0, 2, 0, 0, 0], // build rows from left->right top-> (rotate matrix counter-clockwise)
-             [0, 1, 0, 0, 0, 0], // initialize with zeroes for empty spaces, when a piece is added then row[indexOf(0)] is changed
-             [2, 0, 0, 0, 0, 0],
+      grid: [[0, 0, 0, 0, 0, 0], // start at grid[0][col.length-1] (each row in matrix is column of game grid)
+             [0, 0, 0, 0, 0, 0], //          grid[1][col.length-1] ... until grid[6][col.length-1]
+             [0, 0, 0, 0, 0, 0], //  then go grid[0][col.length-2] ... grid[6][col.length-2]
+             [0, 0, 0, 0, 0, 0], // build rows from left->right top-> (rotate matrix counter-clockwise)
+             [0, 0, 0, 0, 0, 0], // initialize with zeroes for empty spaces, when a piece is added then row[indexOf(0)] is changed
+             [0, 0, 0, 0, 0, 0],
              [0, 0, 0, 0, 0, 0]]
     };
   }
@@ -36,13 +36,14 @@ class ConnectFour extends React.Component {
   }
 
   addPiece(col, val = this.state.currentPlayer) {
-    grid = this.state.grid;
-    occupiedSpaces = this.state.occupiedSpaces;
+    console.log('a column was clicked');
+    var grid = this.state.grid;
+    var occupiedSpaces = this.state.occupiedSpaces;
     if (grid[col].indexOf(0) === -1) {
       return;
     }
     grid[col][grid[col].indexOf(0)] = val;
-    var player = (val === 1) ? 1 : 2;
+    var player = (val === 1) ? 2 : 1;
     occupiedSpaces++;
 
     this.setState({
@@ -50,15 +51,17 @@ class ConnectFour extends React.Component {
       occupiedSpaces: occupiedSpaces,
       grid: grid
     });
+
+    // check for a winner
   }
 
   render() {
     var grid = this.buildGrid();
     return (
       <div className="grid">
-        Connect 4
+        <h1 onClick= {() => {console.log('header click')}}>Connect 4</h1>
         {
-          grid.map(row => <GridRow handleClick={this.addPiece} row={row} />)
+          grid.map(row => <GridRow handleClick={this.addPiece.bind(this)} row={row} />)
         }
       </div>
     );
