@@ -39,10 +39,11 @@ class ConnectFour extends React.Component {
     console.log('a column was clicked');
     var grid = this.state.grid;
     var occupiedSpaces = this.state.occupiedSpaces;
-    if (grid[col].indexOf(0) === -1) {
+    var row = grid[col].indexOf(0);
+    if (row === -1) {
       return;
     }
-    grid[col][grid[col].indexOf(0)] = val;
+    grid[col][row] = val;
     var player = (val === 1) ? 2 : 1;
     occupiedSpaces++;
 
@@ -53,6 +54,11 @@ class ConnectFour extends React.Component {
     });
 
     // check for a winner
+    // checkWinner(row, col)
+  }
+
+  checkWinner(row, col) {
+    var grid = this.state.grid;
   }
 
   render() {
